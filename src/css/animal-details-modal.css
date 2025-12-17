@@ -1,0 +1,20 @@
+.no-scroll {
+    overflow: hidden;
+}
+
+.modal {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    /* стилі з UI Kit */
+}
+
+button:focus {
+    outline: none;
+}
