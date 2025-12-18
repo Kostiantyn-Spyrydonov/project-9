@@ -1,4 +1,4 @@
-import"./assets/vendor-Ck3m8dQj.js";(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))n(s);new MutationObserver(s=>{for(const r of s)if(r.type==="childList")for(const u of r.addedNodes)u.tagName==="LINK"&&u.rel==="modulepreload"&&n(u)}).observe(document,{childList:!0,subtree:!0});function o(s){const r={};return s.integrity&&(r.integrity=s.integrity),s.referrerPolicy&&(r.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?r.credentials="include":s.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function n(s){if(s.ep)return;s.ep=!0;const r=o(s);fetch(s.href,r)}})();const y="https://paw-hut.b.goit.study";async function L(){return(await fetch(`${y}/api/categories`)).json()}async function h({page:t,limit:e}){const o=new URLSearchParams({page:t,limit:e}),n=await fetch(`${y}/api/animals?${o}`);if(!n.ok)throw new Error("API error");return n.json()}function $(t){return`
+import{S as L,N as h,P as v}from"./assets/vendor-BlY6UKo2.js";(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))n(s);new MutationObserver(s=>{for(const r of s)if(r.type==="childList")for(const u of r.addedNodes)u.tagName==="LINK"&&u.rel==="modulepreload"&&n(u)}).observe(document,{childList:!0,subtree:!0});function i(s){const r={};return s.integrity&&(r.integrity=s.integrity),s.referrerPolicy&&(r.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?r.credentials="include":s.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function n(s){if(s.ep)return;s.ep=!0;const r=i(s);fetch(s.href,r)}})();const y="https://paw-hut.b.goit.study";async function w(){return(await fetch(`${y}/api/categories`)).json()}async function $({page:t,limit:e}){const i=new URLSearchParams({page:t,limit:e}),n=await fetch(`${y}/api/animals?${i}`);if(!n.ok)throw new Error("API error");return n.json()}function E(t){return`
         <li>
         <button class="filter-btn active" data-category="">
             Всі
@@ -11,7 +11,7 @@ import"./assets/vendor-Ck3m8dQj.js";(function(){const e=document.createElement("
             </button>
             </li>
         `).join("")}
-    `}function v(t=[]){return t.map(e=>{const o=e.categories.map(n=>`<span class="pet-tag">${n.name}</span>`).join("");return`
+    `}function S(t=[]){return t.map(e=>{const i=e.categories.map(n=>`<span class="pet-tag">${n.name}</span>`).join("");return`
             <li class="pet-card" data-id="${e._id}">
             <img src="${e.image}" alt="${e.name}">
 
@@ -20,7 +20,7 @@ import"./assets/vendor-Ck3m8dQj.js";(function(){const e=document.createElement("
             <h3 class="pet-name">${e.name}</h3>
 
             <div class="pet-tags">
-                ${o}
+                ${i}
             </div>
 
             <p class="pet-meta">
@@ -35,5 +35,5 @@ import"./assets/vendor-Ck3m8dQj.js";(function(){const e=document.createElement("
                 Дізнатись більше
             </button>
             </li>
-        `}).join("")}const c=document.querySelector(".mobile-menu"),E=document.querySelector(".burger-button"),w=document.querySelector(".close-button"),l=()=>{c.classList.toggle("is-open"),document.body.classList.toggle("no-scroll")};E.addEventListener("click",l);w.addEventListener("click",l);c.addEventListener("click",t=>{t.target===c&&l()});window.addEventListener("keydown",t=>{t.key==="Escape"&&c.classList.contains("is-open")&&l()});const b=document.querySelector(".js-filters"),d=document.querySelector(".js-pets-list"),p=document.querySelector(".js-load-more");let a=1,f="";const g=9;let i=[];A();async function A(){const t=await L();b.innerHTML=$(t),m(!0)}async function m(t=!1){try{const e=await h({page:a,limit:g});if(!Array.isArray(e.animals)){d.innerHTML="<p>Нічого не знайдено</p>";return}t?i=e.animals:i=[...i,...e.animals];let o=i;f&&(o=i.filter(n=>n.categories.some(s=>s.name===f))),d.innerHTML=v(o),a*g>=e.totalItems?p.style.display="none":p.style.display="block"}catch(e){console.error(e),d.innerHTML="<p>Помилка завантаження даних</p>"}}b.addEventListener("click",t=>{t.target.classList.contains("filter-btn")&&(document.querySelectorAll(".filter-btn").forEach(e=>e.classList.remove("active")),t.target.classList.add("active"),f=t.target.dataset.category,a=1,m(!0))});p.addEventListener("click",()=>{a+=1,m()});
+        `}).join("")}function A(){new L(".about-swiper",{modules:[h,v],slidesPerView:1,spaceBetween:20,navigation:{nextEl:".about-btn-next",prevEl:".about-btn-prev",disabledClass:"is-disabled"},pagination:{el:".about-pagination",clickable:!0}})}const a=document.querySelector(".mobile-menu"),M=document.querySelector(".burger-button"),P=document.querySelector(".close-button"),l=()=>{a.classList.toggle("is-open"),document.body.classList.toggle("no-scroll")};M.addEventListener("click",l);P.addEventListener("click",l);a.addEventListener("click",t=>{t.target===a&&l()});window.addEventListener("keydown",t=>{t.key==="Escape"&&a.classList.contains("is-open")&&l()});const b=document.querySelector(".js-filters"),d=document.querySelector(".js-pets-list"),p=document.querySelector(".js-load-more");let c=1,f="";const g=9;let o=[];j();async function j(){const t=await w();b.innerHTML=E(t),m(!0)}async function m(t=!1){try{const e=await $({page:c,limit:g});if(!Array.isArray(e.animals)){d.innerHTML="<p>Нічого не знайдено</p>";return}t?o=e.animals:o=[...o,...e.animals];let i=o;f&&(i=o.filter(n=>n.categories.some(s=>s.name===f))),d.innerHTML=S(i),c*g>=e.totalItems?p.style.display="none":p.style.display="block"}catch(e){console.error(e),d.innerHTML="<p>Помилка завантаження даних</p>"}}b.addEventListener("click",t=>{t.target.classList.contains("filter-btn")&&(document.querySelectorAll(".filter-btn").forEach(e=>e.classList.remove("active")),t.target.classList.add("active"),f=t.target.dataset.category,c=1,m(!0))});p.addEventListener("click",()=>{c+=1,m()});A();
 //# sourceMappingURL=index.js.map
