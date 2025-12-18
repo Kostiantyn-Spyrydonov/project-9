@@ -1,3 +1,13 @@
+.success-stories {
+  padding: 64px 0;
+}
+
+@media screen and (min-width: 1440px) {
+  .success-stories {
+    padding: 80px 0;
+  }
+}
+
 .swiper-stories {
   margin-bottom: 40px;
 }
