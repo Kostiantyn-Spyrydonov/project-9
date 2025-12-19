@@ -22,7 +22,7 @@ export async function fetchStories() {
     new Swiper('.swiper-stories', {
       modules: [Navigation, Pagination],
       pagination: {
-        el: '.swiper-pagination',
+        el: document.querySelector('.stories-controls .swiper-pagination'),
         dynamicBullets: true,
         clickable: true,
       },
