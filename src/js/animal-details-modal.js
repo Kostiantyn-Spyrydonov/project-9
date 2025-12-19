@@ -1,8 +1,13 @@
+import { openOrderModal } from './order-modal.js';
+
 const backdrop = document.querySelector('[data-modal-backdrop]');
 const content = document.querySelector('[data-modal-content]');
 const closeBtn = document.querySelector('[data-modal-close]');
 
+let currentAnimal = null; /* new */
+
 export function openPetModal(animal) {
+  currentAnimal = animal;
   content.innerHTML = createModalMarkup(animal);
 
   backdrop.classList.remove('is-hidden');
@@ -34,13 +39,13 @@ function createModalMarkup(animal) {
       <div class="modal-info">
         <p class="modal-category">${animal.species}</p>
         <h2 class="modal-name">${animal.name}</h2>
-        <p class="modal-meta">${animal.age} · ${animal.sex}</p>
+        <p class="modal-meta">${animal.age} · ${animal.gender}</p>
 
         <h3>Опис:</h3>
         <p>${animal.description}</p>
 
         <h3>Здоровʼя:</h3>
-        <p>${animal.health}</p>
+        <p>${animal.healthStatus}</p>
 
         <h3>Поведінка:</h3>
         <p>${animal.behavior}</p>
@@ -61,6 +66,6 @@ content.addEventListener('click', e => {
 
   if (e.target.closest('[data-adopt]')) {
     closePetModal();
-    openOrderModal(animal.id);
+    openOrderModal(currentAnimal._id);
   }
 });
