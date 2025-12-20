@@ -9,37 +9,6 @@ import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import Raty from 'raty-js';
 
-// header
-const mobileMenu = document.querySelector(".mobile-menu");
-const burgerButton = document.querySelector(".burger-button");
-const closeButton = document.querySelector(".close-button");
-const menuContainer = document.querySelector(".menu-container");
-
-if (mobileMenu && burgerButton && closeButton) {
-  const toggleMenu = () => {
-    mobileMenu.classList.toggle("is-open");
-    document.body.classList.toggle("no-scroll");
-  };
-  burgerButton.addEventListener("click", toggleMenu);
-  closeButton.addEventListener("click", toggleMenu);
-  
-  menuContainer.addEventListener("click", (e) => {
-    if (e.target.nodeName === "A" || "menu-take-div") {
-      toggleMenu();
-    }
-  });
-  
-  mobileMenu.addEventListener("click", (e) => {
-    if (e.target === mobileMenu) toggleMenu();
-  });
-  
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && mobileMenu.classList.contains("is-open")) {
-      toggleMenu();
-    }
-  });
-}
-
 /* Pets List */
 import { fetchCategories, fetchAnimals } from './js/pets-list-api.js';
 import { renderFilters, renderAnimals } from './js/pets-list-render.js';
@@ -134,3 +103,8 @@ fetchStories();
 
 // open order modal
 import { openOrderModal } from './js/order-modal.js';
+
+// header
+import { initMobileMenu } from './js/header.js';
+
+initMobileMenu();

@@ -1,4 +1,26 @@
 /*header*/
+.container-h {
+    min-width: 320px;
+    max-width: 375px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+@media only screen and (min-width: 768px) {
+.container-h {
+    max-width: 768px;
+    padding: 0 32px;
+}
+}
+
+@media only screen and (min-width: 1440px) {
+
+.container-h {
+    max-width: 1440px;
+    padding: 0 64px;
+}
+}
+
 .header-container {
     display: flex;
     align-items: center;
@@ -201,13 +223,14 @@ flex-direction: column;
 
 .menu-take-pet-button {
     display: flex;
-    align-items: center;
-    justify-content: center;
+        align-items: center;
+        justify-content: center;
 
     font-weight: 400;
     font-size: 14px;
     line-height: 1.5;
     color: #fff;
+
 }
 
 @media screen and (min-width: 768px) {
