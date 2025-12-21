@@ -34,7 +34,7 @@ backdrop.addEventListener('click', e => {
 
 function createModalMarkup(animal) {
   return `
-    <div class="modal-body container">
+    <div class="modal-body">
       <img src="${animal.image}" alt="${animal.name}" class="modal-img"/>
 
       <div class="modal-info">
