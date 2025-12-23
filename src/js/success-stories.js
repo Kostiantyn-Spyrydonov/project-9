@@ -14,7 +14,12 @@ import starHalf from '/img/raty/star-half.svg';
 
 import Swal from 'sweetalert2';
 
+const loader = document.querySelector('.loader');
+const controls = document.querySelector('.stories-controls');
+
 export async function fetchStories() {
+  showLoader();
+  hideStoryControls();
   try {
     const data = await getFeedbacks();
     renderStories(data.feedbacks);
@@ -45,6 +50,9 @@ export async function fetchStories() {
       showConfirmButton: false,
       timer: 1500,
     });
+  } finally {
+    hideLoader();
+    showStoryControls();
   }
 }
 
@@ -73,4 +81,24 @@ export function renderStories(stories) {
       starHalf,
     }).init();
   });
+
 }
+
+function showLoader() {
+  loader.classList.remove('hidden');
+}
+
+function hideLoader() {
+  loader.classList.add('hidden');
+}
+
+function showStoryControls() {
+  controls.classList.remove('hidden');
+}
+
+function hideStoryControls() {
+  controls.classList.add('hidden');
+}
+
+}
+
