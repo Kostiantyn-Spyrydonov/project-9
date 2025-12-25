@@ -1,21 +1,24 @@
-/* libraries */
-import Swiper from 'swiper';
-import 'swiper/css';
-import Accordion from 'accordion-js';
-import 'accordion-js/dist/accordion.min.css';
-import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
-import * as basicLightbox from 'basiclightbox';
-import 'basiclightbox/dist/basicLightbox.min.css';
-import Raty from 'raty-js';
-
-/* Pets List */
 import { fetchCategories, fetchAnimals } from './js/pets-list-api.js';
 import { renderFilters, renderAnimals } from './js/pets-list-render.js';
 import { openPetModal } from './js/animal-details-modal.js';
 
+import { initAboutSlider } from './js/about-us.js';
+
+import { initFaq } from './js/FAQ.js';
+
+import { fetchStories } from './js/success-stories.js';
+
+import { openOrderModal } from './js/order-modal.js';
+
+import { initMobileMenu } from './js/header.js';
+
+import { scroll, scrollUp } from './js/scroll-top.js';
+
+/* Pets List */
 const filtersEl = document.querySelector('.js-filters');
 const petsListEl = document.querySelector('.js-pets-list');
+const listWrapper = document.querySelector('.pets-list-wrapper');
+const loader = document.querySelector('.loader-pets');
 const loadMoreBtn = document.querySelector('.js-load-more');
 
 if (filtersEl && petsListEl && loadMoreBtn) {
@@ -41,15 +44,31 @@ if (filtersEl && petsListEl && loadMoreBtn) {
   }
 
   function showLoader() {
-    petsListEl.innerHTML = '<li>Завантаження...</li>';
+    loader.classList.remove('hidden');
+    listWrapper.classList.add('is-loading');
+    loadMoreBtn.style.display = 'none';
+  }
+
+  function hideLoader() {
+    loader.classList.add('hidden');
+    listWrapper.classList.remove('is-loading');
+  }
+
+  function showLoadMoreBtn() {
+    loadMoreBtn.style.display = 'block';
+  }
+  function hideLoadMoreBtn() {
+    loadMoreBtn.style.display = 'none';
   }
 
   async function loadAnimals(reset = false) {
+    showLoader();
+
     try {
-      showLoader();
       const data = await fetchAnimals({ page, limit, categoryId });
       if (!Array.isArray(data.animals)) {
         petsListEl.innerHTML = '<p>Нічого не знайдено</p>';
+        loadMoreBtn.style.display = 'none';
         return;
       }
       if (reset) {
@@ -61,13 +80,15 @@ if (filtersEl && petsListEl && loadMoreBtn) {
       petsListEl.innerHTML = renderAnimals(allAnimals);
 
       if (allAnimals.length >= data.totalItems) {
-        loadMoreBtn.style.display = 'none';
+        hideLoadMoreBtn();
       } else {
-        loadMoreBtn.style.display = 'block';
+        showLoadMoreBtn();
       }
     } catch (error) {
       console.error(error);
       petsListEl.innerHTML = '<p>Помилка завантаження даних</p>';
+    } finally {
+      hideLoader();
     }
   }
 
@@ -79,6 +100,7 @@ if (filtersEl && petsListEl && loadMoreBtn) {
     e.target.classList.add('active');
     categoryId = e.target.dataset.categoryId || null;
     page = 1;
+
     loadAnimals(true);
   });
 
@@ -99,25 +121,19 @@ if (filtersEl && petsListEl && loadMoreBtn) {
 }
 
 // about us
-import { initAboutSlider } from './js/about-us.js';
 initAboutSlider();
 
 // FAQ
-import { initFaq } from './js/FAQ.js';
 initFaq();
 
 // Success stories //
-import { fetchStories } from './js/success-stories.js';
 fetchStories();
 
 // open order modal
-import { openOrderModal } from './js/order-modal.js';
 
 // header
-import { initMobileMenu } from './js/header.js';
 initMobileMenu();
 
 // Scroll top/////
-import { scroll, scrollUp } from './js/scroll-top.js';
 scroll();
 scrollUp();

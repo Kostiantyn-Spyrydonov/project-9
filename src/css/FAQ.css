@@ -14,7 +14,7 @@
 
 .faq-item {
   margin-bottom: 12px;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   background: #f3eee8;
   max-width: 864px;
@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   gap: 24px;
-transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .faq-question:hover {
@@ -59,9 +59,12 @@ transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 
 /* Відкритий стан */
 
+.faq-answer-inner {
+  padding: 0 24px 24px 24px;
+}
+
 .faq-item.active .faq-answer {
   max-height: 600px;
-  padding: 0 24px 24px 24px;
 }
 
 .faq-item.active .icon {
@@ -110,14 +113,6 @@ transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
   .faq-question .icon {
     font-size: 24px;
   }
-
-  .faq-item .faq-answer {
-    padding: 0 20px;
-  }
-
-  .faq-item.active .faq-answer {
-    padding: 0 24px 24px;
-  }
 }
 
 /* ===== DESKTOP 1440px ===== */
@@ -127,10 +122,13 @@ transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   .faq-container {
-    max-width: 1312px;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .faq-item {
+    margin-bottom: 16px;
   }
 
   .faq-title {
@@ -143,5 +141,13 @@ transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 
   .faq-question-text {
     font-size: 18px;
+  }
+
+  .faq-answer p {
+    font-size: 16px;
+  }
+
+  .faq-list li {
+    font-size: 16px;
   }
 }

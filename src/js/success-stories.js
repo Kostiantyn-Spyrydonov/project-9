@@ -81,7 +81,6 @@ export function renderStories(stories) {
       starHalf,
     }).init();
   });
-
 }
 
 function showLoader() {
@@ -99,6 +98,3 @@ function showStoryControls() {
 function hideStoryControls() {
   controls.classList.add('hidden');
 }
-
-
-
