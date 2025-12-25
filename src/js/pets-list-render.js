@@ -1,33 +1,34 @@
-
-
-    export function renderFilters(categories) {
-    return `
+export function renderFilters(categories) {
+  return `
         <li>
         <button class="filter-btn active" data-category="">
             Всі
         </button>
         </li>
         ${categories
-        .map(({_id, name }) => `
+          .map(
+            ({ _id, name }) => `
             <li>
             <button class="filter-btn" 
             data-category-id="${_id}">
                 ${name}
             </button>
             </li>
-        `)
-        .join('')}
+        `
+          )
+          .toSorted()
+          .join('')}
     `;
-    }
+}
 
-    export function renderAnimals(animals = []) {
-    return animals
-        .map(animal => {
-        const tagsMarkup = animal.categories
-            .map(c => `<span class="pet-tag">${c.name}</span>`)
-            .join('');
+export function renderAnimals(animals = []) {
+  return animals
+    .map(animal => {
+      const tagsMarkup = animal.categories
+        .map(c => `<span class="pet-tag">${c.name}</span>`)
+        .join('');
 
-        return `
+      return `
             <li class="pet-card">
             <img src="${animal.image}" alt="${animal.name}">
 
@@ -54,6 +55,6 @@
             </button>
             </li>
         `;
-        })
-        .join('');
-    }
+    })
+    .join('');
+}
